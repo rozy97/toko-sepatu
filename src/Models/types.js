@@ -3,7 +3,7 @@ const db = require('../Configs/mysql-connect')
 module.exports = {
     getTypes : () => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM types', (error, response) => {
+            db.query('SELECT * FROM tipe', (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -11,7 +11,7 @@ module.exports = {
 
     getTypeById : (id) => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM types WHERE id=?', [id], (error, response) => {
+            db.query('SELECT * FROM tipe WHERE id=?', [id], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -19,7 +19,7 @@ module.exports = {
 
     postType : (req) => {
         return new Promise((resolve, reject) => {
-            db.query('INSERT INTO types (name) VALUES (?)', [req.name], (error, response) => {
+            db.query('INSERT INTO tipe (nama) VALUES (?)', [req.nama], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -27,7 +27,7 @@ module.exports = {
 
     patchType : (req, id) => {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE types SET name=? WHERE id=?', [req.name, id], (error, response) => {
+            db.query('UPDATE tipe SET nama=? WHERE id=?', [req.nama, id], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -35,7 +35,7 @@ module.exports = {
 
     deleteType : (id) => {
         return new Promise((resolve, reject) => {
-            db.query('DELETE FROM types WHERE id=?', [id], (error, response) => {
+            db.query('DELETE FROM tipe WHERE id=?', [id], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })

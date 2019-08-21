@@ -1,5 +1,5 @@
 const db = require('../Configs/mysql-connect')
-let query = 'SELECT products.id, products.name, products.description, branchs.name as branch, types.name as categorie, products.quantitity FROM products INNER JOIN branchs ON branchs.id=products.id_branch INNER JOIN types ON types.id=products.id_type'
+let query = 'SELECT produk.id, produk.nama, cabang.nama as branch, tipe.nama as categorie, produk.jumlah FROM produk INNER JOIN cabang ON cabang.id=produk.id_cabang INNER JOIN tipe ON tipes.id=produk.id_tipe'
 
 module.exports = {
     getProducts : () => {
@@ -12,7 +12,7 @@ module.exports = {
 
     getProductsByName : (name) => {
         return new Promise((resolve, reject) => {
-            db.query(`${query} WHERE products.name=?`, [name], (error, response) => {
+            db.query(`${query} WHERE produk.nama=?`, [name], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -20,7 +20,7 @@ module.exports = {
 
     postProduct : (req) => {
         return new Promise((resolve, reject) => {
-            db.query('INSERT INTO products SET ?', [req], (error, response) => {
+            db.query('INSERT INTO produk SET ?', [req], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -28,7 +28,7 @@ module.exports = {
 
     patchProduct : (req, id) => {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE products SET ? WHERE id=?', [req, id], (error, response) => {
+            db.query('UPDATE produk SET ? WHERE id=?', [req, id], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -36,7 +36,7 @@ module.exports = {
 
     deleteProduct : (id) => {
         return new Promise((resolve, reject) => {
-            db.query('DELETE FROM products WHERE id=?', [id], (error, response) => {
+            db.query('DELETE FROM produk WHERE id=?', [id], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -44,7 +44,7 @@ module.exports = {
 
     getProductsByBranch : (name) => {
         return new Promise((resolve, reject) => {
-            db.query(`${query} WHERE branchs.name=?`, [name], (error, response) => {
+            db.query(`${query} WHERE cabang.nama=?`, [name], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -52,7 +52,7 @@ module.exports = {
 
     getProductsByType : (name) => {
         return new Promise((resolve, reject) => {
-            db.query(`${query} WHERE types.name=?`, [name], (error, response) => {
+            db.query(`${query} WHERE tipe.nama=?`, [name], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
@@ -60,7 +60,7 @@ module.exports = {
 
     getProductsByQty : (qty) => {
         return new Promise((resolve, reject) => {
-            db.query(`${query} WHERE products.quantitity=?`, [qty], (error, response) => {
+            db.query(`${query} WHERE produk.jumlah=?`, [qty], (error, response) => {
                 (!error) ? resolve(response) : reject(error)
             })
         })
