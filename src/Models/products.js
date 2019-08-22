@@ -1,5 +1,5 @@
-const db = require('../Configs/mysql-connect')
-let query = 'SELECT produk.id, produk.nama, cabang.nama as branch, tipe.nama as categorie, produk.jumlah FROM produk INNER JOIN cabang ON cabang.id=produk.id_cabang INNER JOIN tipe ON tipes.id=produk.id_tipe'
+const db = require('../Configs/mysql-connect');
+let query = 'SELECT produk.id, produk.nama, cabang.nama as branch, tipe.nama as categorie, produk.jumlah FROM produk INNER JOIN cabang ON cabang.id=produk.id_cabang INNER JOIN tipe ON tipes.id=produk.id_tipe';
 
 module.exports = {
     getProducts : () => {
@@ -75,4 +75,4 @@ module.exports = {
             })
         })
     }
-} 
+}
